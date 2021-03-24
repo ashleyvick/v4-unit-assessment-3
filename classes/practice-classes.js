@@ -45,7 +45,7 @@ class Character {
 //CODE HERE
 
 class NPC extends Character{
-  constructor(name, type){
+  constructor(name, type, location, phrase){
     super(name, type);
     this.location = location;
     this.phrase = phrase;
@@ -62,7 +62,7 @@ class NPC extends Character{
 
 //CODE HERE
 
-const ralph = new NPC('Ralph', 'Human', 'Niceland', "I'm gonna weck it!")
+const ralph = new NPC('Ralph', 'human', 'Niceland', "I'm gonna wreck it!")
 
 /*
     Next you're going to create three variables to store information about Ralph.
@@ -77,7 +77,7 @@ const ralphsInfo = ralph.getInfo();
 
 const ralphsDialogue = ralph.dialogue();
 
-const ralphsLocation = ralph(location)
+const ralphsLocation = ralph.location
 
 //////////////////PROBLEM 3////////////////////
 
@@ -105,12 +105,13 @@ const ralphsLocation = ralph(location)
 //CODE HERE
 
 class Player extends Character{
-  constructor(name, type){
+  constructor(name, type, healthLevel, attackLevel){
     super(name, type);
     this.healthLevel = healthLevel;
     this.attackLevel = attackLevel;
   }
   defend(amount){
+    this.healthLevel = this.healthLevel - amount
     if (this.healthLevel > 0){
       return{
         attackStrength: amount,
@@ -175,9 +176,8 @@ class Hero extends Player{
     addSuperPower(power){
       return this.superPowers.push(power)
     }
-    useSuperPower(index){ // don't know how to return the power at that index
-    
-      return `${this.name} used ${this.superPowers}`
+    useSuperPower(i){ 
+      return (`${this.name} used ${this.superPowers[i]}!`)
     }
 }
 
@@ -191,3 +191,12 @@ class Hero extends Player{
 */
 
 //CODE HERE
+
+const fireSpitter = new Hero ('Fire Spitter', 'dragon', 5000, 5000)
+
+fireSpitter.addSuperPower('spitting fire');
+fireSpitter.addSuperPower('flying');
+fireSpitter.addSuperPower('talking to girls');
+
+const fireSpitterAttack = fireSpitter.useSuperPower(0)
+console.log(fireSpitterAttack)
