@@ -143,7 +143,8 @@ kitchenSwitch()
     }
   }
 }
-  }}
+}
+}
 
   /*
     Create a variable called 'shoes' whose value is the invocation of inventory.
