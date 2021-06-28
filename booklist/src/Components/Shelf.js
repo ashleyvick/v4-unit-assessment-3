@@ -1,32 +1,28 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
 
-class Shelf extends Component { 
-    constructor (){
-        super();
-        this.state = {
+class Shelf extends Component {
+  render() {
+    const { shelf, removeFromShelf, clearShelf } = this.props;
 
-        };
-    }
-
-
-    render(){
-        console.log(this.props)
-        const mappedTitles = this.props.shelf.map((elem)=> {
-            return (
-                <div>
-                    <h1>{elem.title}</h1>
-                </div>
-            )
-        })
-
-        return(
-            <div className="Your Shelf">
-                <h1>Your Shelf</h1>
-                <h1 className = "mappedTitles">{mappedTitles}</h1>
-                
-            </div>
-        )
-    }
+    const shelfBooks = shelf.map((book) => {
+      return (
+        <div className="book" key={book.id}>
+          <img src={book.img} alt="" onClick={() => removeFromShelf(book)} />
+          <span className="title">{book.title}</span>
+          <span className="author">{book.author}</span>
+        </div>
+      );
+    });
+    return (
+      <div className="shelf-container">
+        <h3 id="shelf-header">Your Shelf:</h3>
+        <button id="shelf-clear" onClick={() => clearShelf()}>
+          Clear Shelf
+        </button>
+        <div className="shelf-display">{shelfBooks}</div>
+      </div>
+    );
+  }
 }
 
 export default Shelf;

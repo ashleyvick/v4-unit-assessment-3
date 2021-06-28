@@ -1,29 +1,26 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react'
 
-class Booklist extends Component { 
-    constructor (){
-        super();
-        this.state = {
-        };
-    }
+class Booklist extends Component {
+    render() {
+        const { booklist, addToShelf } = this.props;
 
-    render(){
-        const mappedBooks = this.props.books.map((elem) => {
-            return ( 
-            <div>
-                <img src={elem.img} onClick={() => this.props.addToShelf(elem.title)}></img> 
-                <h1>{elem.title}</h1>
-                <h2>{elem.author}</h2>
-            </div>)
+        const displayBooks = booklist.map( book => {
+            return (
+                <div className="book" key={ book.id }>
+                    <img src={ book.img } alt="" onClick={ () => addToShelf(book) }/>
+                    <span className="title">{ book.title }</span>
+                    <span className="author">{ book.author }</span>
+                </div>
+                )
         })
-        return(
-            <div>
-                <span className="booklist">{mappedBooks}</span>
 
-                
+        return (
+            <div className="booklist">
+                { displayBooks }
             </div>
         )
     }
 }
+
 
 export default Booklist;
